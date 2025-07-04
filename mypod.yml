@@ -1,0 +1,36 @@
+kind: Deployment
+apiVersion: apps/v1
+metadata:
+  name: mypod1
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: mypodtemplate1
+  template:
+    metadata:
+      labels:
+        app: mypodtemplate1
+    spec:
+      containers:
+        - name: con1
+          image: nikhildocker4424/dotnet-mvc:1
+          ports:
+            - containerPort: 8081
+          env:
+            - name: ASPNETCORE_URLS
+              value: "http://*:8081"
+---
+
+kind: Service
+apiVersion: v1
+metadata:
+  name: mypodservice1
+spec:
+  type: NodePort
+  ports:
+    - port: 8082
+      targetPort: 8081
+      nodePort: 30006
+  selector:
+    app: mypodtemplate1

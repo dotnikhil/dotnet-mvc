@@ -1,7 +1,7 @@
-FROM mcr.microsoft.com/dotnet/aspnet:4.8 as base
+FROM mcr.microsoft.com/dotnet/framework/aspnet:4.8 as base
 WORKDIR /app
 
-FROM mcr.microsoft.com/dotnet/sdk:4.8 as build
+FROM mcr.microsoft.com/dotnet/framework/sdk:4.8 as build
 WORKDIR /src
 
 COPY MVC_CURD_LIST/MVC_CRUD_LIST.csproj .
